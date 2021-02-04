@@ -11,21 +11,22 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfBrandDal : IBrandDal
     {
-        public void Add(Brand car)
+
+        public void Add(Brand entity)
         {
             using (CarDbContext context = new CarDbContext())
             {
-                var addedCar = context.Entry(car);
+                var addedCar = context.Entry(entity);
                 addedCar.State = EntityState.Added;
                 context.SaveChanges();
             }
         }
 
-        public void Delete(Brand car)
+        public void Delete(Brand entity)
         {
             using (CarDbContext context = new CarDbContext())
             {
-                var deletedCar = context.Entry(car);
+                var deletedCar = context.Entry(entity);
                 deletedCar.State = EntityState.Deleted;
                 context.SaveChanges();
             }
@@ -49,11 +50,11 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-        public void Update(Brand car)
+        public void Update(Brand entity)
         {
             using (CarDbContext context = new CarDbContext())
             {
-                var updatedCar = context.Entry(car);
+                var updatedCar = context.Entry(entity);
                 updatedCar.State = EntityState.Modified;
                 context.SaveChanges();
             }

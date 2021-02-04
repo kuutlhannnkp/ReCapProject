@@ -21,15 +21,15 @@ namespace UiConsole
                 ColorId = 2,
                 CarDailyPrice = 255,
                 CarModelYear = 2016,
-                CarDescription = "Benzin, Otomatik, Coupe, Klimalı"
+                CarDescription = "KLİMALI, GENİŞ "
             });
             carManager.Add(new Car
             {
                 BrandId = 1,
                 ColorId = 2,
-                CarDailyPrice = 0,
+                CarDailyPrice = 2,
                 CarModelYear = 2016,
-                CarDescription = "Klimalı"
+                CarDescription = "Klimalı ve Ferah"
             });
             foreach (var car in carManager.GetCarsByBrandId(1))
             {

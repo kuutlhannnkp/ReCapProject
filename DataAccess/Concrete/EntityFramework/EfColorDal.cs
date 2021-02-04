@@ -11,22 +11,24 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfColorDal : IColorDal
     {
+       
 
-        public void Add(Color car)
+       
+        public void Add(Color entity)
         {
             using (CarDbContext context = new CarDbContext())
             {
-                var addedCar = context.Entry(car);
+                var addedCar = context.Entry(entity);
                 addedCar.State = EntityState.Added;
                 context.SaveChanges();
             }
         }
 
-        public void Delete(Color car)
+        public void Delete(Color entity)
         {
             using (CarDbContext context = new CarDbContext())
             {
-                var deletedCar = context.Entry(car);
+                var deletedCar = context.Entry(entity);
                 deletedCar.State = EntityState.Deleted;
                 context.SaveChanges();
             }
@@ -50,15 +52,14 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-        public void Update(Color car)
+        public void Update(Color entity)
         {
             using (CarDbContext context = new CarDbContext())
             {
-                var updatedCar = context.Entry(car);
+                var updatedCar = context.Entry(entity);
                 updatedCar.State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
-        
     }
 }

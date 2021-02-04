@@ -11,22 +11,22 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : ICarDal
     {
-        public void Add(Car car)
+        
+        public void Add(Car entity)
         {
             using (CarDbContext context = new CarDbContext())
             {
-                var addedCar = context.Entry(car);
+                var addedCar = context.Entry(entity);
                 addedCar.State = EntityState.Added;
                 context.SaveChanges();
             }
-            
         }
 
-        public void Delete(Car car)
+        public void Delete(Car entity)
         {
             using (CarDbContext context = new CarDbContext())
             {
-                var deletedCar = context.Entry(car);
+                var deletedCar = context.Entry(entity);
                 deletedCar.State = EntityState.Deleted;
                 context.SaveChanges();
             }
@@ -34,7 +34,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         public Car Get(Expression<Func<Car, bool>> filter)
         {
-            using (CarDbContext context =new CarDbContext())
+            using (CarDbContext context = new CarDbContext())
             {
                 return context.Set<Car>().SingleOrDefault(filter);
             }
@@ -50,11 +50,11 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-        public void Update(Car car)
+        public void Update(Car entity)
         {
             using (CarDbContext context = new CarDbContext())
             {
-                var updatedCar = context.Entry(car);
+                var updatedCar = context.Entry(entity);
                 updatedCar.State = EntityState.Modified;
                 context.SaveChanges();
             }
