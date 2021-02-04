@@ -1,5 +1,8 @@
 ﻿
+using Business.Abstract;
 using Business.Concrete;
+using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
@@ -11,20 +14,27 @@ namespace UiConsole
     {
         static void Main(string[] args)
         {
-            CarManager carManager = new CarManager(new InMemoryCarDal());
-            List<Car> _cars = carManager.GetAll();
-            foreach (var item in carManager.GetAll())
+            CarManager carManager = new CarManager(new EfCarDal());
+            carManager.Add(new Car
             {
-                Console.WriteLine(
-                    item.Id + " "
-                    + item.BrandId + " "
-                    + item.ColorId + " "
-                    + item.ModelYear + " "
-                    + item.DailyPrice + " "
-                    + item.Description
-                    ) ;
+                BrandId = 1,
+                ColorId = 2,
+                CarDailyPrice = 255,
+                CarModelYear = 2016,
+                CarDescription = "Benzin, Otomatik, Coupe, Klimalı"
+            });
+            carManager.Add(new Car
+            {
+                BrandId = 1,
+                ColorId = 2,
+                CarDailyPrice = 0,
+                CarModelYear = 2016,
+                CarDescription = "Klimalı"
+            });
+            foreach (var car in carManager.GetCarsByBrandId(1))
+            {
+                Console.WriteLine("Araç bilgisi: {0} Model Yılı: {1} Günlük Ücret: {2}", car.CarDescription, car.CarModelYear, car.CarDailyPrice);
             }
-            
         }
     }
 }
